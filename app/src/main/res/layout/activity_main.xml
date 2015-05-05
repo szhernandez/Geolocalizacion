@@ -1,0 +1,64 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/lblPosicion"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Posición Actual"
+        android:textSize="20dp"
+        android:gravity="center"
+        />
+    <TextView
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Ultima localizacion conocida"
+
+        />
+    <TextView
+        android:id="@+id/lblPosLatitud"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Latitud"
+
+        />
+    <TextView
+        android:id="@+id/lblPosLongitud"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Longitud"
+        />
+    <TextView
+        android:id="@+id/lblPresicion"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Presicion"
+        />
+    <Button android:id="@+id/prendiendo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Comenzar/Actualizar"
+        />
+    <Button android:id="@+id/apagando"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Apagar"
+        />
+    <TextView
+        android:id="@+id/lblEstado"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Estatus del sensor: "
+        />
+
+
+
+
+
+</LinearLayout>
