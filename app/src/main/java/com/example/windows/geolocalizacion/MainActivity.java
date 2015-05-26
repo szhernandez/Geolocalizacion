@@ -1,6 +1,7 @@
 package com.example.windows.geolocalizacion;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,7 +18,7 @@ import android.widget.Toast;
 public class MainActivity extends ActionBarActivity implements View.OnClickListener{
     private LocationManager locManager;
     private LocationListener locListener;
-    Button prender, apagar;
+    Button prender, apagar, map;
     TextView latitud, longitud,presicion, estado;
 
     @Override
@@ -30,8 +31,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         estado = (TextView)findViewById(R.id.lblEstado);
         prender=(Button) findViewById(R.id.prendiendo);
         apagar=(Button) findViewById(R.id.apagando);
+       // map=(Button) findViewById(R.id.mapa);
         prender.setOnClickListener(this);
         apagar.setOnClickListener(this);
+
 
 
 
@@ -75,18 +78,29 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 presicion.setText("Presicion");
                 Toast.makeText(this, "Comenzando localizacion..." , Toast.LENGTH_SHORT).show();
                 comienzaLocalizacion();
+                prender.setText("Actualizar");
 
                 break;
             case R.id.apagando:
+                latitud.setText("Latitud");
+                longitud.setText("Longitud");
+                presicion.setText("Presicion");
                 apagaLocalizacion();
                 Toast.makeText(this, "Finalizando localizacion..." , Toast.LENGTH_SHORT).show();
                 break;
 
+           /* case R.id.mapa:
+
+                Intent intent = new Intent(getBaseContext(), mapa.class);
+
+                startActivity(intent);
+                break;
+*/
 
         }
     }
     private void apagaLocalizacion() {
-        estado.setText("Estatus del sensor: apagado");
+        estado.setText("Estatus del sensor: Apagado");
         locManager.removeUpdates(locListener);
     }
 
@@ -94,15 +108,17 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         //Reseteamos los TextView
 
-        estado.setText("Estatus del sensor: encendido");
+        estado.setText("Estatus del sensor: Encendido");
 
 
 
         //Obtenemos una referencia al servicio de localizacion del sistema
+
         locManager =  (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 
-        Location ubicacion = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        Location ubicacion2 = locManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+        Location ubicacion = locManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        Location ubicacion2 = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         mostrarUbicacion(ubicacion, ubicacion2);
 
 
@@ -131,18 +147,22 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             }
         };
         //intervalo de localizacion
-        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 30000, 0,locListener);
+        locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 6000, 1,locListener);
+        locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 6000, 1,locListener);
     }
     private void mostrarUbicacion(Location location, Location location2) {
         if (location != null){
             longitud.setText(String.valueOf("Longitud: "+location.getLongitude()));
             latitud.setText("Latitud: "+location.getLatitude() + "");
             presicion.setText("Precicion: "+location.getAccuracy()+"");
+
         }else{
             if (location == null){
                 longitud.setText(String.valueOf("Longitud: "+location2.getLongitude()));
                 latitud.setText("Latitud: "+location2.getLatitude() + "");
-                presicion.setText("Precicion: "+location2.getAccuracy()+"");
+                presicion.setText("Presicion: "+location2.getAccuracy()+"");
+
+
             }else {
 
                 Toast.makeText(this, "No existe servicio localizacion en su sistema, ENCIENDA RED o GPS", Toast.LENGTH_SHORT).show();
