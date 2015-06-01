@@ -11,7 +11,7 @@
         android:id="@+id/lblPosicion"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Posición Actual"
+        android:text="@string/posicionactual"
         android:textSize="20dp"
         android:gravity="center"
         />
@@ -19,14 +19,14 @@
 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Ultima localizacion conocida"
+        android:text="@string/ultima_loc"
 
         />
     <TextView
         android:id="@+id/lblPosLatitud"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Latitud"
+        android:text="@string/latitud"
 
         />
     <TextView
@@ -39,7 +39,7 @@
         android:id="@+id/lblPresicion"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Presicion"
+        android:text="@string/presicion"
         />
 <LinearLayout
     android:layout_width="match_parent"
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Comenzar"
+        android:text="@string/comenzar"
 
 
 
@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Apagar"
+        android:text="@string/apagar"
 
         android:backgroundTint="#f0FFF9C4"
 
@@ -73,7 +73,7 @@
         android:id="@+id/lblEstado"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Estatus del sensor: "
+        android:text="@string/estado"
         />
 
 

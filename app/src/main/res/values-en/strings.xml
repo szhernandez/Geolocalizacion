@@ -13,11 +13,11 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_example">Example action</string>
-    <string name="posicionactual">Posicion actual</string>
-    <string name="ultima_loc">Ultima localizacion conocida</string>
-    <string name="latitud">Latitud</string>
+    <string name="posicionactual">Position</string>
+    <string name="ultima_loc">Last known location</string>
+    <string name="latitud">Latitude</string>
     <string name="presicion">Presicion</string>
-    <string name="comenzar">Iniciar</string>
-    <string name="apagar">Apagar</string>
-    <string name="estado">Estado</string>
+    <string name="comenzar">On</string>
+    <string name="apagar">Off</string>
+    <string name="estado">Status</string>
 </resources>
