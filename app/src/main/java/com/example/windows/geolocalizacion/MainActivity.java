@@ -34,13 +34,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
        // map=(Button) findViewById(R.id.mapa);
         prender.setOnClickListener(this);
         apagar.setOnClickListener(this);
-
-
-
-
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,18 +54,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
+            //Acciones a ejecutar en caso de clic en el boton prender
             case R.id.prendiendo:
                 latitud.setText("Latitud");
                 longitud.setText("Longitud");
@@ -79,8 +68,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 Toast.makeText(this, "Comenzando localizacion..." , Toast.LENGTH_SHORT).show();
                 comienzaLocalizacion();
                 prender.setText("Actualizar");
-
                 break;
+            //Acciones a ejecutar en caso de clic en el boton apagar
             case R.id.apagando:
                 latitud.setText("Latitud");
                 longitud.setText("Longitud");
@@ -88,42 +77,23 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 apagaLocalizacion();
                 Toast.makeText(this, "Finalizando localizacion..." , Toast.LENGTH_SHORT).show();
                 break;
-
-           /* case R.id.mapa:
-
-                Intent intent = new Intent(getBaseContext(), mapa.class);
-
-                startActivity(intent);
-                break;
-*/
-
         }
     }
     private void apagaLocalizacion() {
+        //Establece el TextView de estado como apagado
         estado.setText("Estatus del sensor: Apagado");
         locManager.removeUpdates(locListener);
     }
 
     private void comienzaLocalizacion() {
-
         //Reseteamos los TextView
-
         estado.setText("Estatus del sensor: Encendido");
-
-
-
         //Obtenemos una referencia al servicio de localizacion del sistema
-
         locManager =  (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-
-
+        //Asignamos la ubicacion obtenida de la red y el GPS
         Location ubicacion = locManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         Location ubicacion2 = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         mostrarUbicacion(ubicacion, ubicacion2);
-
-
-
-
 
         locListener = new LocationListener() {
             @Override
@@ -152,26 +122,28 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     }
     private void mostrarUbicacion(Location location, Location location2) {
         if (location != null){
+            //Asignamos a los TextView los valores obtenidos de la localizacion en el caso de la red
             longitud.setText(String.valueOf("Longitud: "+location.getLongitude()));
             latitud.setText("Latitud: "+location.getLatitude() + "");
             presicion.setText("Precicion: "+location.getAccuracy()+"");
 
-        }else{
+        }
+        //En caso de no obtener datos
+        else{
             if (location == null){
+                //Asignamos a los TextView los valores obtenidos de la localizacion en el caso de la red
                 longitud.setText(String.valueOf("Longitud: "+location2.getLongitude()));
                 latitud.setText("Latitud: "+location2.getLatitude() + "");
                 presicion.setText("Presicion: "+location2.getAccuracy()+"");
-
-
-            }else {
-
+            }
+            //En caso de no obtenr datos de ningun servicio mostramos el mensage
+            else {
                 Toast.makeText(this, "No existe servicio localizacion en su sistema, ENCIENDA RED o GPS", Toast.LENGTH_SHORT).show();
             }
-            }
+        }
     }
     private void mostrarUbicacion2(Location location) {
         if (location != null){
-
         }else{Toast.makeText(this, "No existe servicio localizacion en su sistema2, ENCIENDA RED o GPS" , Toast.LENGTH_SHORT).show();}
     }
 }
